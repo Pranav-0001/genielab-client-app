@@ -3,10 +3,11 @@ import useGetAssistantById from "@/api/useGetAssistantById";
 import { setChatId } from "@/redux/chatSlice";
 import { RotateCw, X } from "lucide-react";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ChatHeader({ style, name }) {
   const chat = sessionStorage.getItem("chat");
+  const assistantId = useSelector((state) => state.chat.assistantId);
   const dispatch = useDispatch();
   const createChat = useCreateChatMutation({
     onSuccess: (data) => {
@@ -55,9 +56,7 @@ export default function ChatHeader({ style, name }) {
       <div className="flex items-center gap-2">
         <button
           className="cursor-pointer "
-          onClick={() =>
-            createChat.mutate({ assistant: "67e7f654e58fcc7f014fc5c2" })
-          }
+          onClick={() => createChat.mutate({ assistant: assistantId })}
         >
           <RotateCw color={style?.secondaryColor} />
         </button>

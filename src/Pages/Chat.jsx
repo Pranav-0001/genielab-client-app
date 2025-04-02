@@ -5,11 +5,13 @@ import MessageBox from "@/components/MessageBox";
 import useCreateChatMutation from "@/api/useCreateChatMutation";
 import { useEffect } from "react";
 import { setChatId } from "@/redux/chatSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useGetAssistantById from "@/api/useGetAssistantById";
+import { socket } from "@/socket/socket";
 
 export default function Chat() {
   const chat = sessionStorage.getItem("chat");
+  const assistantId = useSelector((state) => state.chat.assistantId);
   const dispatch = useDispatch();
   const createChat = useCreateChatMutation({
     onSuccess: (data) => {
@@ -20,12 +22,13 @@ export default function Chat() {
   });
   useEffect(() => {
     if (!chat) {
-      createChat.mutate({ assistant: "67e7f654e58fcc7f014fc5c2" });
+      createChat.mutate({ assistant: assistantId });
     }
   }, [chat]);
+  socket.emit("join_room", chat);
 
   const getAssistantById = useGetAssistantById({
-    id: "67e7f654e58fcc7f014fc5c2",
+    id: assistantId,
   });
 
   return (
