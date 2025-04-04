@@ -11,7 +11,6 @@ export default function ChatHeader({ style, name }) {
   const dispatch = useDispatch();
   const createChat = useCreateChatMutation({
     onSuccess: (data) => {
-      console.log(data);
       sessionStorage.setItem("chat", data?.data._id);
       dispatch(setChatId({ chatId: data?.data._id }));
     },
@@ -60,9 +59,9 @@ export default function ChatHeader({ style, name }) {
         >
           <RotateCw color={style?.secondaryColor} />
         </button>
-        <button className="cursor-pointer ">
+        {/* <button className="cursor-pointer ">
           <X color={style?.secondaryColor} />
-        </button>
+        </button> */}
       </div>
     </div>
   );

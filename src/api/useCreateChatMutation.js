@@ -14,5 +14,6 @@ export default function useCreateChatMutation(params) {
   return useMutation({
     mutationFn: createChat,
     ...params,
+    enabled: params?.enabled,
   });
 }

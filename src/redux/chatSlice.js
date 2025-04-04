@@ -4,7 +4,7 @@ export const chatSlice = createSlice({
   name: "chat",
   initialState: {
     chatId: "",
-    assistantId: window?.assistant || "67e7f654e58fcc7f014fc5c2",
+    assistantId: "",
   },
   reducers: {
     setChatId: (state, action) => {
@@ -16,6 +16,6 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { setChatId } = chatSlice.actions;
+export const { setChatId,setAssistantId } = chatSlice.actions;
 
 export default chatSlice.reducer;

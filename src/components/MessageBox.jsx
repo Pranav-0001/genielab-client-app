@@ -33,7 +33,6 @@ export default function MessageBox({
   const sendMessage = useSendMessageMutation({
     id: chatId,
     onSuccess: (data) => {
-      console.log(data);
       getAllMessages.refetch();
     },
   });
@@ -66,6 +65,9 @@ export default function MessageBox({
               onEmojiClick={onEmojiClick}
               searchDisabled={false}
               previewConfig={{ showPreview: false }}
+              style={{maxWidth: "300px"}}
+              skinTonesDisabled
+              searchPlaceHolder="Search emojis..."
             />
           </div>
         )}

@@ -13,7 +13,6 @@ export default function MessagesWindow({ style }) {
     id: chatId,
     enabled: !!chatId,
   });
-  console.log({ getMessages: getMessages?.data });
 
   const getAllMessages = useGetAllMessagesByChatId({
     id: chatId,
@@ -23,14 +22,12 @@ export default function MessagesWindow({ style }) {
   const sendMessage = useSendMessageMutation({
     id: chatId,
     onSuccess: (data) => {
-      console.log(data);
       setTyping(true);
       getAllMessages.refetch();
     },
   });
 
   socket.on("NEW_MESSAGE", () => {
-    console.log("NEW_MESSAGE");
     getAllMessages.refetch();
     setTyping(false);
   });

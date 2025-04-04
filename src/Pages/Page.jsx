@@ -8,5 +8,6 @@ export default function Page({ children }) {
     const chatId = sessionStorage.getItem("chat");
     dispatch(setChatId({ chatId }));
   }, []);
+
   return <div className="">{children}</div>;
 }
