@@ -1,6 +1,7 @@
 import useCreateChatMutation from "@/api/useCreateChatMutation";
 import useGetAssistantById from "@/api/useGetAssistantById";
 import { setChatId } from "@/redux/chatSlice";
+import { socket } from "@/socket/socket";
 import { RotateCw, X } from "lucide-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ export default function ChatHeader({ style, name }) {
     onSuccess: (data) => {
       sessionStorage.setItem("chat", data?.data._id);
       dispatch(setChatId({ chatId: data?.data._id }));
+      socket.emit("join_room", data?.data._id);
     },
   });
 
