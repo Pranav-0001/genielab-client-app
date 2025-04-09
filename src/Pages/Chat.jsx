@@ -13,8 +13,8 @@ import RainLoader from "@/components/RainLoader";
 export default function Chat() {
   const chat = sessionStorage.getItem("chat");
   const assistantId = useSelector((state) => state.chat.assistantId);
-  const url = location.host.split(".")?.[0];
-  // const url = "customer";
+//   const url = location.host.split(".")?.[0]; 
+  const url = "customer";
   const dispatch = useDispatch();
   const createChat = useCreateChatMutation({
     enabled: !!assistantId,

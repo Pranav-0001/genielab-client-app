@@ -65,7 +65,7 @@ export default function MessageBox({
               onEmojiClick={onEmojiClick}
               searchDisabled={false}
               previewConfig={{ showPreview: false }}
-              style={{maxWidth: "300px"}}
+              style={{ maxWidth: "300px" }}
               skinTonesDisabled
               searchPlaceHolder="Search emojis..."
             />
@@ -98,6 +98,11 @@ export default function MessageBox({
           >
             <Send size={20} />
           </button>
+        </div>
+
+        <div className="text-gray-400 text-sm text-end flex w-full items-end justify-end mt-2 gap-1">
+          <p>Powered by </p>
+          <img src="genielab.png" width="60px" alt="" />
         </div>
       </div>
     </>

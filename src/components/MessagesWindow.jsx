@@ -77,8 +77,8 @@ export default function MessagesWindow({ style }) {
             style={{
               backgroundColor:
                 message.createdByType === "user"
-                  ? style?.primaryColor
-                  : style?.secondaryColor,
+                  ? `${style?.primaryColor}99`
+                  : `${style?.secondaryColor}30`,
               alignSelf:
                 message.createdByType === "user" ? "flex-end" : "flex-start",
               color:
@@ -93,24 +93,26 @@ export default function MessagesWindow({ style }) {
       ) : (
         <></>
       )}
-      {typing&&<div
-        className="flex items-center justify-start h-4 w-fit px-3 py-4 rounded"
-        style={{
-          color: style?.primaryColor,
-          backgroundColor: style?.secondaryColor,
-        }}
-      >
-        {[0, 1, 2, 3].map((index) => (
-          <div
-            key={index}
-            className={`h-2 w-2 rounded-full bg-black mr-1 last:mr-0 animate-pulse`}
-            style={{
-              animationDelay: `${(index - 2) * 0.2}s`,
-              animationDuration: "1.5s",
-            }}
-          ></div>
-        ))}
-      </div>}
+      {typing && (
+        <div
+          className="flex items-center justify-start h-4 w-fit px-3 py-4 rounded"
+          style={{
+            color: style?.primaryColor,
+            backgroundColor: style?.secondaryColor,
+          }}
+        >
+          {[0, 1, 2, 3].map((index) => (
+            <div
+              key={index}
+              className={`h-2 w-2 rounded-full bg-black mr-1 last:mr-0 animate-pulse`}
+              style={{
+                animationDelay: `${(index - 2) * 0.2}s`,
+                animationDuration: "1.5s",
+              }}
+            ></div>
+          ))}
+        </div>
+      )}
       {getMessages?.data?.data?.length < 2 && (
         <div className="absolute bottom-5 right-5 flex flex-col md:flex-row gap-2">
           {style?.suggestedMessages
